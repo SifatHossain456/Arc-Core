@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Arc Flow — Stablecoin payments, instant.",
   description:
     "Send USDC and EURC on Arc, Circle's stablecoin Layer-1. Sub-second finality, USDC as gas.",
+  manifest: "/manifest.json",
   openGraph: {
     title: "Arc Flow",
     description: "Stablecoin payments at the speed of thought, on Arc.",

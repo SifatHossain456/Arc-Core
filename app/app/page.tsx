@@ -13,8 +13,10 @@ import { BatchSend } from "@/components/BatchSend";
 import { WatchAddress } from "@/components/WatchAddress";
 import { AddressBook } from "@/components/AddressBook";
 import { NetworkStats } from "@/components/NetworkStats";
+import { AccountStats } from "@/components/AccountStats";
+import { TxHashChecker } from "@/components/TxHashChecker";
 
-type Tab = "send" | "request" | "batch" | "contacts" | "watch";
+type Tab = "send" | "request" | "batch" | "contacts" | "watch" | "tools";
 
 const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
   {
@@ -64,6 +66,15 @@ const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
       </svg>
     ),
   },
+  {
+    id: "tools",
+    label: "Tools",
+    icon: (
+      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M13.5 2.5l-2 2-1.5-1.5 2-2a3 3 0 00-3.5 3.5L2 11a1.41 1.41 0 002 2l6.5-6.5a3 3 0 003.5-3.5z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function AppPage() {
@@ -76,26 +87,25 @@ export default function AppPage() {
         <div className="absolute inset-x-0 top-0 h-[420px] bg-aurora pointer-events-none" />
 
         <div className="relative mx-auto max-w-6xl px-5 pt-10 pb-16 space-y-5">
-          {/* Page title */}
           <div>
             <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">Dashboard</h1>
             <p className="text-arc-mute text-sm mt-1">Your stablecoin hub on Arc Testnet.</p>
           </div>
 
           <NetworkGate>
-            {/* Network stats bar */}
             <NetworkStats />
+            <AccountStats />
 
             <div className="grid lg:grid-cols-[1fr,1.25fr] gap-5">
-              {/* Left: balance + history */}
+              {/* Left column */}
               <div className="space-y-5">
                 <BalanceCard />
                 <TxHistory />
               </div>
 
-              {/* Right: tabbed panel */}
+              {/* Right column */}
               <div className="space-y-4">
-                {/* Tab bar — scrollable on mobile */}
+                {/* Scrollable tab bar */}
                 <div className="flex items-center gap-1 glass rounded-2xl p-1.5 overflow-x-auto no-scrollbar">
                   {tabs.map((t) => (
                     <button
@@ -127,13 +137,18 @@ export default function AppPage() {
                     initial={{ opacity: 0, x: 6 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -6 }}
-                    transition={{ duration: 0.18 }}
+                    transition={{ duration: 0.16 }}
                   >
                     {tab === "send" && <SendForm />}
                     {tab === "request" && <CreateRequest />}
                     {tab === "batch" && <BatchSend />}
                     {tab === "contacts" && <AddressBook />}
                     {tab === "watch" && <WatchAddress />}
+                    {tab === "tools" && (
+                      <div className="space-y-4">
+                        <TxHashChecker />
+                      </div>
+                    )}
                   </motion.div>
                 </AnimatePresence>
               </div>

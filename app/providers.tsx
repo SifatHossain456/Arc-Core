@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { useState, type ReactNode } from "react";
 import { wagmiConfig } from "@/lib/wagmi";
+import { Toaster } from "@/components/Toaster";
 
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -25,6 +26,7 @@ export function Providers({ children }: { children: ReactNode }) {
           modalSize="compact"
         >
           {children}
+          <Toaster />
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

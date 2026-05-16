@@ -107,15 +107,12 @@ export function CreateRequest() {
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={copy}
                 className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-arc-accent to-arc-accent2 text-white text-sm font-medium hover:shadow-glow transition-shadow"
               >
-                <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M5 9L1 5l4-4M11 1l4 4-4 4M9.5 1l-3 14" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                Share link
+                {copied ? "Copied!" : "Copy link"}
               </button>
               <a
                 href={generated.url}
@@ -123,10 +120,36 @@ export function CreateRequest() {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl glass text-arc-ink text-sm hover:bg-white/[0.06] transition-colors"
               >
-                Preview page
-                <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="currentColor">
-                  <path d="M5 3h8v8h-2V6.41L4.41 13 3 11.59 9.59 5H5V3z" />
-                </svg>
+                Preview ↗
+              </a>
+            </div>
+
+            {/* Social share buttons */}
+            <div className="flex items-center gap-2">
+              <span className="text-[11px] text-arc-mute uppercase tracking-[0.16em] mr-1">Share via</span>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(`Pay me ${amount} ${token} on Arc: ${generated.url}`)}`}
+                target="_blank" rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#25D366]/10 text-[#25D366] text-xs hover:bg-[#25D366]/20 transition-colors"
+              >
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.112 1.527 5.84L.057 23.926a.5.5 0 00.609.628l6.263-1.637A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.76-.527-5.31-1.443l-.381-.225-3.947 1.032 1.05-3.846-.249-.395A9.952 9.952 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+                WhatsApp
+              </a>
+              <a
+                href={`https://t.me/share/url?url=${encodeURIComponent(generated.url)}&text=${encodeURIComponent(`Pay me ${amount} ${token} on Arc Flow`)}`}
+                target="_blank" rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#229ED9]/10 text-[#229ED9] text-xs hover:bg-[#229ED9]/20 transition-colors"
+              >
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                Telegram
+              </a>
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Pay me ${amount} ${token} on Arc Flow ⚡`)}&url=${encodeURIComponent(generated.url)}`}
+                target="_blank" rel="noreferrer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] text-arc-ink text-xs hover:bg-white/[0.10] transition-colors"
+              >
+                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X
               </a>
             </div>
           </div>
