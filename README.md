@@ -55,9 +55,16 @@ lib/
 
 ## Deploy
 
-This is a vanilla Next.js app — push to Vercel, set
-`NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` if you want WalletConnect mobile support,
-and you're live.
+One-click on Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSifatHossain456%2FArc-Core&project-name=arc-flow&repository-name=arc-flow&env=NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID&envDescription=Optional%20—%20only%20needed%20for%20WalletConnect%20mobile%20support.%20Get%20one%20at%20cloud.walletconnect.com)
+
+Or manually: import the repo at <https://vercel.com/new>, accept defaults
+(Next.js detected, no build settings to change), and ship. Set
+`NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` from <https://cloud.walletconnect.com> if
+you want WalletConnect mobile support — MetaMask injected works without it.
+
+Every push to `main` redeploys automatically.
 
 ## License
 
