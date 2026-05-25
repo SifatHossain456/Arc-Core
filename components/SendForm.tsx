@@ -80,17 +80,18 @@ export function SendForm() {
     const tid = toast.pending("Waiting for wallet…");
     try {
       let txHash: Hash;
+      const cleanAmount = `${parseFloat(amount)}` as `${number}`;
       if (token === "USDC") {
         txHash = await native.sendTransactionAsync({
           to: to.trim() as Address,
-          value: parseUnits(amount as `${number}`, 18),
+          value: parseUnits(cleanAmount, 18),
         });
       } else {
         txHash = await erc20.writeContractAsync({
           address: EURC_ADDRESS,
           abi: erc20Abi,
           functionName: "transfer",
-          args: [to.trim() as Address, parseUnits(amount as `${number}`, 6)],
+          args: [to.trim() as Address, parseUnits(cleanAmount, 6)],
         });
       }
       if (tid) toast.dismiss(tid);

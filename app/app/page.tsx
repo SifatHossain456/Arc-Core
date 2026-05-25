@@ -106,10 +106,13 @@ export default function AppPage() {
               {/* Right column */}
               <div className="space-y-4">
                 {/* Scrollable tab bar */}
-                <div className="flex items-center gap-1 glass rounded-2xl p-1.5 overflow-x-auto no-scrollbar">
+                <div role="tablist" aria-label="App sections" className="flex items-center gap-1 glass rounded-2xl p-1.5 overflow-x-auto no-scrollbar">
                   {tabs.map((t) => (
                     <button
                       key={t.id}
+                      role="tab"
+                      aria-selected={tab === t.id}
+                      aria-controls={`tabpanel-${t.id}`}
                       onClick={() => setTab(t.id)}
                       className={`relative flex-1 min-w-max flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-[13px] font-medium transition-colors whitespace-nowrap ${
                         tab === t.id ? "text-arc-bg" : "text-arc-mute hover:text-arc-ink"
@@ -134,6 +137,8 @@ export default function AppPage() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={tab}
+                    id={`tabpanel-${tab}`}
+                    role="tabpanel"
                     initial={{ opacity: 0, x: 6 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -6 }}
