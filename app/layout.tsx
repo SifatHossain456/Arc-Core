@@ -7,14 +7,21 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Arc Flow — Stablecoin payments, instant.",
+  title: { default: "Arc Flow — Stablecoin payments, instant.", template: "%s — Arc Flow" },
   description:
     "Send USDC and EURC on Arc, Circle's stablecoin Layer-1. Sub-second finality, USDC as gas.",
+  keywords: ["Arc", "stablecoin", "USDC", "EURC", "payments", "DeFi", "Layer-1"],
   manifest: "/manifest.json",
   openGraph: {
-    title: "Arc Flow",
-    description: "Stablecoin payments at the speed of thought, on Arc.",
+    title: "Arc Flow — Stablecoin payments, instant.",
+    description: "Send USDC and EURC on Arc, Circle's stablecoin Layer-1. Sub-second finality, USDC as gas.",
     type: "website",
+    siteName: "Arc Flow",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arc Flow — Stablecoin payments, instant.",
+    description: "Stablecoin payments at the speed of thought, on Arc.",
   },
 };
 
